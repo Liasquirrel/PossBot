@@ -3,7 +3,7 @@ from discord.ext import commands
 from datetime import date
 import random
 
-TOKEN = 'NzMxMzE2MDU2ODExMTEwNDEx.XwkR_Q.ZyaC3E0jD_JBqbEUkmwSc1-0I4A'
+TOKEN = ''
 client = commands.Bot(command_prefix='!')
 #Just a lil counter for me
 comCount = 0
