@@ -3,14 +3,14 @@ from discord.ext import commands
 from datetime import date
 import random
 
+#Token taken out because
 TOKEN = ''
 client = commands.Bot(command_prefix='!')
-#Just a lil counter for me
-comCount = 0
 
 
 
 
+#Literally just links in arrays. :( I'm sure there's a more easily expandable way but
 posslinks = ['https://i.imgur.com/2pnkDrX.jpg','https://i.imgur.com/7hdR7Mp.jpg','https://i.imgur.com/ZAZ7eOf.jpg','https://i.imgur.com/rPkivfi.jpg',
 'https://i.imgur.com/b7Ydiio.jpg','https://i.imgur.com/2D3X0TR.jpg','https://i.imgur.com/SGPs2JT.jpg','https://i.imgur.com/agqBn4y.jpg','https://i.imgur.com/irYbv9w.jpg',
 'https://i.imgur.com/6sOuOJL.jpg','https://i.imgur.com/x9jwzT4.jpg','https://i.imgur.com/DKKIFgv.jpg','https://i.imgur.com/hevNCkx.jpg','https://i.imgur.com/iNXOX56.jpg',
@@ -29,10 +29,10 @@ posslinks = ['https://i.imgur.com/2pnkDrX.jpg','https://i.imgur.com/7hdR7Mp.jpg'
 'https://i.imgur.com/WCqgaHL.jpg','https://i.imgur.com/mg1w9D8.jpg','https://i.imgur.com/mbl9XiF.jpg','https://i.imgur.com/LEp1OSO.jpg','https://i.imgur.com/4Ozmo6g.jpg',
 'https://i.imgur.com/14BJ0H5.jpg','https://i.imgur.com/5TOZV33.jpg','https://i.imgur.com/zWxxCNd.png','https://i.imgur.com/X1G8ZwD.jpg','https://i.imgur.com/ClLmtil.jpg',
 'https://i.imgur.com/C4cBZ4D.jpg','https://i.imgur.com/U8NTHKN.png','https://i.imgur.com/hIoR2VT.jpg','https://i.imgur.com/FUlyw1C.png','https://i.imgur.com/WA1VvVt.jpg']
-
+#This way was really quick and easy
 possdoc = ['https://www.youtube.com/watch?v=GLQr1wLr_Xo','https://www.youtube.com/watch?v=mNtlMfrhbE4','https://www.youtube.com/watch?v=QRE8LyarQys','https://www.youtube.com/watch?v=-RKMBw2j-e4',
 'https://www.youtube.com/watch?v=rxhDwZCWxdE']
-
+#So sue me
 squirrelL = ['https://i.imgur.com/CG1DxZd.jpg','https://i.imgur.com/341xaed.mp4','https://i.imgur.com/fTN9FCB.jpg','https://i.imgur.com/ci1taRM.jpg','https://i.imgur.com/D2Z2m6S.jpg',
 'https://i.imgur.com/BCxiR1d.jpg','https://i.imgur.com/fEktng2.jpeg','https://i.imgur.com/ukfzg2C.png','https://i.imgur.com/mIjaJMp.jpg','https://i.imgur.com/uY9Ybwm.png',
 'https://i.imgur.com/lqNMoE4.png','https://i.imgur.com/CuPkzjq.jpg','https://i.imgur.com/BTawhLC.jpg','https://i.imgur.com/vrtrdpc.jpg','https://i.imgur.com/rYayJdG.jpg']
@@ -42,6 +42,7 @@ squirrelL = ['https://i.imgur.com/CG1DxZd.jpg','https://i.imgur.com/341xaed.mp4'
 async def on_ready():
     print(f'Logged in as: {client.user.name}')
     print(f'With ID: {client.user.id}')
+	#Set up what PossBot is doing
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="an opossum documentary!"))
 
 
@@ -52,7 +53,7 @@ async def on_ready():
 #    await ctx.send('pong')
 #    print(f'got command')
 #
-# Not using, but another way to do this.
+# Not using, but another way to do this. Requires a thingy in on_message or it never calls
 #
 
 
@@ -62,7 +63,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    global comCount
+    
+	#"If me, no answer"
     if message.author == client.user:
         return
     
@@ -73,8 +75,7 @@ async def on_message(message):
     if message.content == '!poss':
         response = random.choice(posslinks)
         await message.channel.send(response)
-        comCount += 1
-        print(comCount)
+        
 
     if message.content == '!squirrel':
         response = random.choice(squirrelL)
@@ -83,25 +84,18 @@ async def on_message(message):
     if message.content == '!stop' : 
         await message.channel.send("THERE IS NO ESCAPE!!!")
         await message.channel.send('https://i.imgur.com/XJPdqw4.jpg')
-        comCount += 1
-        print(comCount)
+        
 
     if message.content == '!doc' :
         response = random.choice(possdoc)
         await message.channel.send("Here is the documentary I'm watching! {}".format(response))
-        comCount += 1
-        print(comCount)
         
-       
 
     if message.content == '!friday' : 
         if date.today().weekday() == 4:
-            
             await message.channel.send("Weekday Update: TODAY IS FRIDAY")
         else: 
             await message.channel.send("Weekday Update: TODAY IS NOT FRIDAY")
-        comCount += 1
-        print(comCount)
 
     #
     #
