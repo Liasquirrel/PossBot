@@ -3,9 +3,10 @@ from discord.ext import commands
 from datetime import date
 import random
 
-#Token taken out because
 TOKEN = ''
 client = commands.Bot(command_prefix='!')
+#Just a lil counter for me
+
 
 
 
@@ -70,8 +71,10 @@ async def on_message(message):
     
     #!commands. After some research it's just uglier, no real downside compared to the ping up there
     if message.content == '!commands' :
+		
         await message.channel.send("I can react to !poss, !friday, !squirrel, !doc and !stop. I also have a few hidden interactions :)")
-
+		
+		
     if message.content == '!poss':
         response = random.choice(posslinks)
         await message.channel.send(response)
@@ -96,6 +99,9 @@ async def on_message(message):
             await message.channel.send("Weekday Update: TODAY IS FRIDAY")
         else: 
             await message.channel.send("Weekday Update: TODAY IS NOT FRIDAY")
+
+    if message.content == '!dance' :
+        await message.channel.send("GECKO DANCE PARTY https://www.youtube.com/watch?v=pl1lg6Amv8E")
 
     #
     #
