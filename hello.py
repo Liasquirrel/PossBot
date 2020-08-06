@@ -64,56 +64,55 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    
-	#"If me, no answer"
+
+    #"If me, no answer"
     if message.author == client.user:
         return
     
-    #!commands. After some research it's just uglier, no real downside compared to the ping up there
-    if message.content == '!commands' :
-		
-        await message.channel.send("I can react to !poss, !friday, !squirrel, !doc and !stop. I also have a few hidden interactions :)")
-		
-		
-    if message.content == '!poss':
-        response = random.choice(posslinks)
-        await message.channel.send(response)
+
+    if message.content[0] == "!": #Check if the message has a !
+        processing = message.content[1:] #Add everything past the ! into processing
+        processing = processing.lower() #Put it all lowercase
+
+        if processing == 'commands' :
+            await message.channel.send("I can react to !poss, !friday, !squirrel, !doc, !dance and !stop. I also have a few hidden interactions :)")
+        if processing == 'poss':
+            response = random.choice(posslinks)
+            await message.channel.send(response)
         
 
-    if message.content == '!squirrel':
-        response = random.choice(squirrelL)
-        await message.channel.send(response)
+        if processing == 'squirrel':
+            response = random.choice(squirrelL)
+            await message.channel.send(response)
 
-    if message.content == '!stop' : 
-        await message.channel.send("THERE IS NO ESCAPE!!!")
-        await message.channel.send('https://i.imgur.com/XJPdqw4.jpg')
+        if processing == 'stop' : 
+            await message.channel.send("THERE IS NO ESCAPE!!!")
+            await message.channel.send('https://i.imgur.com/XJPdqw4.jpg')
         
 
-    if message.content == '!doc' :
-        response = random.choice(possdoc)
-        await message.channel.send("Here is the documentary I'm watching! {}".format(response))
+        if processing == 'doc' :
+            response = random.choice(possdoc)
+            await message.channel.send("Here is the documentary I'm watching! {}".format(response))
         
 
-    if message.content == '!friday' : 
-        if date.today().weekday() == 4:
-            await message.channel.send("Weekday Update: TODAY IS FRIDAY")
-        else: 
-            await message.channel.send("Weekday Update: TODAY IS NOT FRIDAY")
+        if processing == 'friday' : 
+            if date.today().weekday() == 4:
+                await message.channel.send("Weekday Update: TODAY IS FRIDAY")
+            else: 
+                await message.channel.send("Weekday Update: TODAY IS NOT FRIDAY")
 
-    if message.content == '!dance' :
-        await message.channel.send("GECKO DANCE PARTY https://www.youtube.com/watch?v=pl1lg6Amv8E")
-
-    #
-    #
-    #
-    #
-
+        if processing == 'dance' :
+            await message.channel.send("GECKO DANCE PARTY https://www.youtube.com/watch?v=pl1lg6Amv8E")
+        
+    
     #Dawn Stuff
     if message.author.id == 180770495912738817:
        await message.add_reaction(":wecaredawn:718573614537900104")
 
+    processing = message.content #Add everything past the ! into processing
+    processing = processing.lower()
     #Thanking the bot
-    if message.content == 'Thank you, PossBot!':
+    if processing == 'thank you, possbot!' or processing == 'thank you possbot'or processing == 'thank you possbot!':
         if message.author.id == 143570939781578752:
             await message.channel.send("No problem Lia~, you're the best!")
             
@@ -127,10 +126,10 @@ async def on_message(message):
                 await message.channel.send("Don't be a suckup!!")
                 await message.channel.send('https://i.imgur.com/XJPdqw4.jpg')
     
-    if message.content == 'Fuck you, PossBot!':
+    if processing == 'fuck you, possbot!':
         await message.channel.send("Well fuck you too!!")
         await message.channel.send('https://i.pinimg.com/originals/5a/29/e5/5a29e574d4f22386c3702e9dc377d8ca.png')
-    if message.content == 'bork':
+    if processing == 'bork':
         await message.channel.send('bork')
 
     
